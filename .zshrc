@@ -56,7 +56,9 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/ijw/.oh-my-zsh"
-ZSH_THEME="oxide"
+
+# load oxide if it's available, if not default to sunaku
+[ -f $ZSH/themes/oxide.zsh-theme ] && ZSH_THEME="oxide" || ZSH_THEME="sunaku"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
