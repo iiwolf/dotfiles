@@ -104,4 +104,6 @@ export PATH="/home/ijw/flites/flites-2.1.4/binaries/linux_x64_rhel7/bin:$PATH"
 export MANPATH="/home/ijw/flites/flites-2.1.4:$MANPATH"
 
 ## Extensions ## 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 . /usr/share/autojump/autojump.sh
+
