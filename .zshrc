@@ -55,7 +55,10 @@
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ijw/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+export HOME="$HOME"
+export PROJECTS=$HOME/projects
+export DOTFILES=$HOME/dotfiles
 
 # load oxide if it's available, if not default to sunaku
 [ -f $ZSH/themes/oxide.zsh-theme ] && ZSH_THEME="oxide" || ZSH_THEME="sunaku"
@@ -72,13 +75,13 @@ source $ZSH/oh-my-zsh.sh
 ## Aliases, Misc. Defaults ##
 alias em='emacs -nw'
 alias emz='emacs -nw ~/.zshrc'
-alias slack='slack-term --config /home/ijw/snap/slack-term/current/slack-term.json'
+alias slack='slack-term --config $HOME/snap/slack-term/current/slack-term.json'
 export EDITOR='emacs -nw'
 
 ## HEAT ##
-export HEATPATH=/home/ijw/projects/heat
-export PATH=$PATH:/home/ijw/projects/heat/bin/scripts
-export PYTHONPATH=/home/ijw/projects/heat/bin/pyscripts:$PYTHONPATH
+export HEATPATH=$PROJECTS/heat
+export PATH=$PATH:$PROJECTS/heat/bin/scripts
+export PYTHONPATH=$PROJECTS/heat/bin/pyscripts:$PYTHONPATH
 
 ## KOKKOS ##
 export OMP_NUM_THREADS=8
@@ -86,8 +89,8 @@ export OMP_PROC_BIND=spread
 export OMP_PLACES=threads
 
 ## OSG ##
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/home/ijw/projects/OpenSceneGraph/lib
-export PATH=${PATH}:/home/ijw/projects/OpenSceneGraph/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$PROJECTS/OpenSceneGraph/lib
+export PATH=${PATH}:$PROJECTS/OpenSceneGraph/bin
 export OPENTHREADS_INC_DIR="/usr/local/include"
 
 ## CUDA ##
@@ -96,14 +99,20 @@ export PATH=$CUDA_INSTALL_PATH/bin:$PATH
 export LD_LIBRARY_PATH=$CUDA_INSTALL_PATH/lib64:$LD_LIBRARY_PATH
 
 ## FLITES ##
-export FLT2_DIR="/home/ijw/flites/flites-2.1.4"
-export FLT2_BIN_DIR="/home/ijw/flites/flites-2.1.4/binaries/linux_x64_rhel7/bin"
-export FLT2_LIBRARY_DIR="/home/ijw/flites/flites-2.1.4/binaries/linux_x64_rhel7/lib"
-export LD_LIBRARY_PATH="/home/ijw/flites/flites-2.1.4/binaries/linux_x64_rhel7/lib:$LD_LIBRARY_PATH"
-export PATH="/home/ijw/flites/flites-2.1.4/binaries/linux_x64_rhel7/bin:$PATH"
-export MANPATH="/home/ijw/flites/flites-2.1.4:$MANPATH"
+export FLT2_DIR="$HOME/flites/flites-2.1.4"
+export FLT2_BIN_DIR="$HOME/flites/flites-2.1.4/binaries/linux_x64_rhel7/bin"
+export FLT2_LIBRARY_DIR="$HOME/flites/flites-2.1.4/binaries/linux_x64_rhel7/lib"
+export LD_LIBRARY_PATH="$HOME/flites/flites-2.1.4/binaries/linux_x64_rhel7/lib:$LD_LIBRARY_PATH"
+export PATH="$HOME/flites/flites-2.1.4/binaries/linux_x64_rhel7/bin:$PATH"
+export MANPATH="$HOME/flites/flites-2.1.4:$MANPATH"
 
 ## Extensions ## 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 . /usr/share/autojump/autojump.sh
 
+## Functions ##
+symlink(){
+    [ -f $1 ] && echo "Linking $1 to $DOTFILES/$1" || { echo "$1 does not exist" && exit }
+    mv $1 $DOTFILES/$1
+    ln -s $DOTFILES/$1 $1
+}
