@@ -73,9 +73,15 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 ## Aliases, Misc. Defaults ##
+
+# emacs aliases
 alias em='emacs -nw'
 alias emz='emacs -nw ~/.zshrc'
-alias slack='slack-term --config $HOME/snap/slack-term/current/slack-term.json'
+alias emb='emacs -nw ~/.bashrc'
+
+# git aliases
+alias gdm='git diff master'
+alias gcm='git checkout master'
 export EDITOR='emacs -nw'
 
 ## HEAT ##
