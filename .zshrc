@@ -99,20 +99,30 @@ export PATH=$CUDA_INSTALL_PATH/bin:$PATH
 export LD_LIBRARY_PATH=$CUDA_INSTALL_PATH/lib64:$LD_LIBRARY_PATH
 
 ## FLITES ##
-export FLT2_DIR="$HOME/flites/flites-2.1.4"
-export FLT2_BIN_DIR="$HOME/flites/flites-2.1.4/binaries/linux_x64_rhel7/bin"
-export FLT2_LIBRARY_DIR="$HOME/flites/flites-2.1.4/binaries/linux_x64_rhel7/lib"
-export LD_LIBRARY_PATH="$HOME/flites/flites-2.1.4/binaries/linux_x64_rhel7/lib:$LD_LIBRARY_PATH"
-export PATH="$HOME/flites/flites-2.1.4/binaries/linux_x64_rhel7/bin:$PATH"
-export MANPATH="$HOME/flites/flites-2.1.4:$MANPATH"
+export FLT2_DIR="$PROJECTS/flites-2.1.4"
+export FLT2_BIN_DIR="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/bin"
+export FLT2_LIBRARY_DIR="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/lib"
+export LD_LIBRARY_PATH="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/lib:$LD_LIBRARY_PATH"
+export PATH="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/bin:$PATH"
+export MANPATH="$PROJECTS/flites-2.1.4:$MANPATH"
 
 ## Extensions ## 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 . /usr/share/autojump/autojump.sh
 
 ## Functions ##
+
+# create symlink of $1 by moving it to $DOTFILES and pointing back to it
 symlink(){
     [ -f $1 ] && echo "Linking $1 to $DOTFILES/$1" || { echo "$1 does not exist" && exit }
     mv $1 $DOTFILES/$1
     ln -s $DOTFILES/$1 $1
 }
+
+# remove flites .so because of cuda dependences
+move_flites_library(){
+    mv $FLT2_LIBRARY_DIR/$1 $FLT2_LIBRARY_DIR/temp/$1
+}
+
+#custom script bin path
+export PATH=$PATH:$HOME/bin

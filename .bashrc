@@ -118,20 +118,19 @@ fi
 
 # USER CUSTOM #
 alias em="emacs -nw"
-#alias flites="flitesApp flites.def"
+alias flites="flitesApp flites.def"
 
 # CUDA #
 export CUDA_INSTALL_PATH=/usr/local/cuda-10.1
 export PATH=$CUDA_INSTALL_PATH/bin:$PATH
 export LD_LIBRARY_PATH=$CUDA_INSTALL_PATH/lib64:$LD_LIBRARY_PATH
 
-# FLITES #
-export __GL_SYNC_TO_VBLANK="0"
-export FLT2_DIR="/home/ijw/flites/flites-2.1.4"
-export FLT2_BIN_DIR="/home/ijw/flites/flites-2.1.4/binaries/linux_x64_rhel7/bin"
-export FLT2_LIBRARY_DIR="/home/ijw/flites/flites-2.1.4/binaries/linux_x64_rhel7/lib"
-export PATH="/home/ijw/flites/flites-2.1.4/binaries/linux_x64_rhel7/bin:$PATH"
-export LD_LIBRARY_PATH="/home/ijw/flites/flites-2.1.4/binaries/linux_x64_rhel7/lib:$LD_LIBRARY_PATH"
-export MANPATH="/home/ijw/flites/flites-2.1.4:$MANPATH"
+## FLITES ##
+export FLT2_DIR="$PROJECTS/flites-2.1.4"
+export FLT2_BIN_DIR="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/bin"
+export FLT2_LIBRARY_DIR="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/lib"
+export LD_LIBRARY_PATH="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/lib:$LD_LIBRARY_PATH"
+export PATH="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/bin:$PATH"
+export MANPATH="$PROJECTS/flites-2.1.4:$MANPATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
