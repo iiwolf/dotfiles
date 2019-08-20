@@ -59,6 +59,8 @@ export ZSH="$HOME/.oh-my-zsh"
 export HOME="$HOME"
 export PROJECTS=$HOME/projects
 export DOTFILES=$HOME/dotfiles
+export BINPATH=$DOTFILES/bin
+export PATH=$PATH:$BINPATH # custom bin
 
 # load oxide if it's available, if not default to sunaku
 [ -f $ZSH/themes/oxide.zsh-theme ] && ZSH_THEME="oxide" || ZSH_THEME="sunaku"
@@ -72,59 +74,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-## Aliases, Functions, Misc. Defaults ##
-
-# build and run osg project
-function bnr(){
-
-    if [[ $(pwd) == *"osg"* ]]; then
-    cd ${PROJECTS}/osgsharedvector/build
-    make
-    if [[ $? == 0 ]]; then
-        ./osgsharedvector
-    fi
-    elif [[ $(pwd) == *"flites"* ]]; then
-
-        no_return=0
-        if [[ $(pwd) == "${PROJECTS}/heat-flites" ]]; then
-            no_return=1
-        fi
-        
-        # cd in heat-flights an make
-        cd ${PROJECTS}/heat-flites
-        make
-
-        # if build successful, run
-        if [[ $? == 0 ]]; then
-            ./heat-flites
-        fi
-
-        # return to prev directory if necessary
-        if [[ $no_return == 0 ]]; then
-            cd -
-        fi
-        echo "done"
-
-    elif [[ $(pwd) == *"heat"* ]]; then
-
-        no_return=0
-        if [[ $(pwd) == "${PROJECTS}/heat/build" ]]; then
-            no_return=1
-        fi
-
-        cd ${PROJECTS}/heat/build
-        make
-
-        if [[ $? == 0 ]]; then
-            # ./heat-flites
-        fi
-        if [[ $no_return == 0 ]]; then
-            cd -
-        fi
-    
-    fi
-
-}
+## Aliases, Misc. Defaults ##
 
 # emacs aliases
 alias em='emacs -nw'
@@ -181,9 +131,6 @@ symlink(){
     ln -s $DOTFILES/$1 $1
 }
 
-
-## FLITES FUNCTIONS ##
-
 # remove flites .so because of cuda dependences
 move_flites_library(){
     mv $FLT2_LIBRARY_DIR/$1 $FLT2_LIBRARY_DIR/temp/$1
@@ -206,10 +153,65 @@ function b(){
     fi
 }
 
-fly(){
-    cd $PROJECTS/heat-couple
+# build and run osg project
+function bnr(){
+
+    if [[ $(pwd) == *"osg"* ]]; then
+    cd ${PROJECTS}/osgsharedvector/build
     make
-    ./heat-flites
+    if [[ $? == 0 ]]; then
+        ./osgsharedvector
+    fi
+    elif [[ $(pwd) == *"flites"* ]]; then
+
+        no_return=0
+        if [[ $(pwd) == "${PROJECTS}/heat-flites" ]]; then
+            no_return=1
+        fi
+        
+        # cd in heat-flights an make
+        cd ${PROJECTS}/heat-flites
+        make
+
+        # if build successful, run
+        if [[ $? == 0 ]]; then
+            ./heat-flites
+        fi
+
+        # return to prev directory if necessary
+        if [[ $no_return == 0 ]]; then
+            cd -
+        fi
+        echo "done"
+
+    elif [[ $(pwd) == *"heat"* ]]; then
+
+        no_return=0
+        if [[ $(pwd) == "${PROJECTS}/heat/build" ]]; then
+            no_return=1
+        fi
+
+        cd ${PROJECTS}/heat/build
+        make
+
+        if [[ $? == 0 ]]; then
+            # ./heat-flites
+        fi
+        if [[ $no_return == 0 ]]; then
+            cd -
+        fi
+    
+    fi
+
 }
-#custom script bin path
-export PATH=$PATH:$HOME/dotfiles/bin
+
+# create new .sh file $1 in bin
+function binscript(){   
+    if [[ -f $BINPATH/$1.sh ]]; then
+        echo "File $1 already exists!"
+        exit 1
+    fi
+
+    printf "#!/bin/bash\n# $1 : " > $BINPATH/$1.sh
+    code $BINPATH/$1.sh
+}
