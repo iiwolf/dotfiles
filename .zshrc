@@ -72,16 +72,72 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-## Aliases, Misc. Defaults ##
+## Aliases, Functions, Misc. Defaults ##
+
+# build and run osg project
+function bnr(){
+
+    if [[ $(pwd) == *"osg"* ]]; then
+    cd ${PROJECTS}/osgsharedvector/build
+    make
+    if [[ $? == 0 ]]; then
+        ./osgsharedvector
+    fi
+    elif [[ $(pwd) == *"flites"* ]]; then
+
+        no_return=0
+        if [[ $(pwd) == "${PROJECTS}/heat-flites" ]]; then
+            no_return=1
+        fi
+        
+        # cd in heat-flights an make
+        cd ${PROJECTS}/heat-flites
+        make
+
+        # if build successful, run
+        if [[ $? == 0 ]]; then
+            ./heat-flites
+        fi
+
+        # return to prev directory if necessary
+        if [[ $no_return == 0 ]]; then
+            cd -
+        fi
+        echo "done"
+
+    elif [[ $(pwd) == *"heat"* ]]; then
+
+        no_return=0
+        if [[ $(pwd) == "${PROJECTS}/heat/build" ]]; then
+            no_return=1
+        fi
+
+        cd ${PROJECTS}/heat/build
+        make
+
+        if [[ $? == 0 ]]; then
+            # ./heat-flites
+        fi
+        if [[ $no_return == 0 ]]; then
+            cd -
+        fi
+    
+    fi
+
+}
 
 # emacs aliases
 alias em='emacs -nw'
 alias emz='emacs -nw ~/.zshrc'
 alias emb='emacs -nw ~/.bashrc'
+alias cz='code ~/.zshrc'
+alias sz='source ~/.zshrc'
 
 # git aliases
 alias gdm='git diff master'
 alias gcm='git checkout master'
+
+## Evironment Variables ##
 export EDITOR='emacs -nw'
 
 ## HEAT ##
@@ -125,6 +181,9 @@ symlink(){
     ln -s $DOTFILES/$1 $1
 }
 
+
+## FLITES FUNCTIONS ##
+
 # remove flites .so because of cuda dependences
 move_flites_library(){
     mv $FLT2_LIBRARY_DIR/$1 $FLT2_LIBRARY_DIR/temp/$1
@@ -147,7 +206,10 @@ function b(){
     fi
 }
 
-alias srcz='source ~/.zshrc'
-
+fly(){
+    cd $PROJECTS/heat-couple
+    make
+    ./heat-flites
+}
 #custom script bin path
 export PATH=$PATH:$HOME/bin
