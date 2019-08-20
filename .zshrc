@@ -130,5 +130,24 @@ move_flites_library(){
     mv $FLT2_LIBRARY_DIR/$1 $FLT2_LIBRARY_DIR/temp/$1
 }
 
+# build current project #
+function b(){
+    HEAT_BUILD_PATH=$HEATPATH/build
+    jump_back=0
+    if [[ $(pwd) != $HEAT_BUILD_PATH ]]; then
+        jump_back=1
+        cd $HEAT_BUILD_PATH
+    fi
+    
+    #make
+    make
+
+    if [[ $jump_back == 1 ]]; then
+        cd -
+    fi
+}
+
+alias srcz='source ~/.zshrc'
+
 #custom script bin path
 export PATH=$PATH:$HOME/bin
