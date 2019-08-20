@@ -212,4 +212,4 @@ fly(){
     ./heat-flites
 }
 #custom script bin path
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/dotfiles/bin
