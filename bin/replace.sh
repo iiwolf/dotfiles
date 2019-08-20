@@ -1,0 +1,4 @@
+#!/bin/bash
+# replace 
+
+sed -i "s/$1/$2/g" $3
