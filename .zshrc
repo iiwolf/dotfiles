@@ -33,7 +33,7 @@ alias gdm='git diff master'
 alias gcm='git checkout master'
 
 ## Evironment Variables ##
-export EDITOR='emacs -nw'
+export EDITOR='code'
 
 ## HEAT ##
 export HEATPATH=$PROJECTS/heat
@@ -174,7 +174,6 @@ function binscript(){
     fi
 
     printf "#!/bin/bash\n# $1 : " > $BINPATH/$1.sh
-    sudo chmod a+x $BINPATH/$1.sh
     code $BINPATH/$1.sh
 }
 
@@ -182,3 +181,7 @@ function binscript(){
 function codebin(){
     code $BINPATH/$1
 }
+
+alias chmodbin='sudo chmod a+x $BINPATH/*'
+alias visit='/usr/local/bin/visit/bin/visit'
+alias rgfzf='rg . | fzf'
