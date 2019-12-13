@@ -6,3 +6,5 @@ rm *.tiff
 rm *.img
 rm *.tif
 rm *.jpg
+rm *.bin
+rm *.err

@@ -5,7 +5,12 @@ export HOME="$HOME"
 export PROJECTS=$HOME/projects
 export DOTFILES=$HOME/dotfiles
 export BINPATH=$DOTFILES/bin
-export PATH=$PATH:$BINPATH # custom bin
+export PROGRAMS=$HOME/programs
+export PATH=$PATH:$BINPATH:$PROGRAMS
+
+# Misc program paths
+export PATH=$PROGRAMS/ParaView-5.7.0-RC1-MPI-Linux-64bit/bin:$PATH
+export PATH=$PROGRAMS/gmsh-4.3.0-Linux64/bin:$PATH
 
 # load oxide if it's available, if not default to sunaku
 [ -f $ZSH/themes/oxide.zsh-theme ] && ZSH_THEME="oxide" || ZSH_THEME="sunaku"
@@ -31,19 +36,20 @@ alias sz='source ~/.zshrc'
 # git aliases
 alias gdm='git diff master'
 alias gcm='git checkout master'
+alias gdno='git diff --name-only'
 
 ## Evironment Variables ##
 export EDITOR='code'
 
 ## HEAT ##
-export HEATPATH=$PROJECTS/heat
-export PATH=$PATH:$HEATPATH/build
-export PATH=$PATH:$PROJECTS/heat/bin/scripts
-export PYTHONPATH=$PROJECTS/heat/bin/pyscripts:$PYTHONPATH
+export HEATPATH="$PROJECTS/heat"
+export PATH="$PATH:$HEATPATH/build"
+export PATH="$PATH:$PROJECTS/heat/tools/bash"
+export PYTHONPATH="$PROJECTS/heat/tools/python:$PYTHONPATH"
 
 ## PREHEAT ##
-export PREHEATPATH=$PROJECTS/preheat
-export PATH=$PATH:$PREHEATPATH/build
+export PREHEATPATH="$PROJECTS/preheat"
+export PATH="$PATH:$PREHEATPATH/build"
 
 ## KOKKOS ##
 export OMP_NUM_THREADS=8
@@ -51,14 +57,14 @@ export OMP_PROC_BIND=spread
 export OMP_PLACES=threads
 
 ## OSG ##
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$PROJECTS/OpenSceneGraph/lib
-export PATH=${PATH}:$PROJECTS/OpenSceneGraph/bin
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:$PROJECTS/OpenSceneGraph/lib"
+export PATH="${PATH}:$PROJECTS/OpenSceneGraph/bin"
 export OPENTHREADS_INC_DIR="/usr/local/include"
 
 ## CUDA ##
-export CUDA_INSTALL_PATH=/usr/local/cuda-10.1
-export PATH=$CUDA_INSTALL_PATH/bin:$PATH
-export LD_LIBRARY_PATH=$CUDA_INSTALL_PATH/lib64:$LD_LIBRARY_PATH
+export CUDA_INSTALL_PATH="/usr/local/cuda-10.1"
+export PATH="$CUDA_INSTALL_PATH/bin:$PATH"
+export LD_LIBRARY_PATH="$CUDA_INSTALL_PATH/lib64:$LD_LIBRARY_PATH"
 
 ## FLITES ##
 export FLT2_DIR="$PROJECTS/flites-2.1.4"
@@ -88,16 +94,22 @@ move_flites_library(){
 
 # build current project #
 function b(){
+    
     if [[ $(pwd) == *"preheat"* ]]; then
-
         PREHEAT_BUILD_PATH=$PREHEATPATH/build
         jump_back=0
         if [[ $(pwd) != $PREHEAT_BUILD_PATH ]]; then
             jump_back=1
             cd $PREHEAT_BUILD_PATH
         fi
-
-    elif [[ $(pwd) == *"heat" ]]; then
+    elif [[ $(pwd) == *"flites"* ]]; then
+        HEAT_FLITES_BUILD_PATH=$PROJECTS/heat-flites/build
+        jump_back=0
+        if [[ $(pwd) != $HEAT_FLITES_BUILD_PATH ]]; then
+            jump_back=1
+            cd $HEAT_FLITES_BUILD_PATH
+        fi
+    elif [[ $(pwd) == *"heat"* ]]; then
         HEAT_BUILD_PATH=$HEATPATH/build
         jump_back=0
         if [[ $(pwd) != $HEAT_BUILD_PATH ]]; then
@@ -108,21 +120,22 @@ function b(){
 
     #make
     make
-
+    result=$?
     if [[ $jump_back == 1 ]]; then
         cd -
     fi
+    return $result
 }
 
 # build and run current project
 function bnr(){
 
     if [[ $(pwd) == *"osg"* ]]; then
-    cd ${PROJECTS}/osgsharedvector/build
-    make
-    if [[ $? == 0 ]]; then
-        ./osgsharedvector
-    fi
+        cd ${PROJECTS}/osgsharedvector/build
+        make
+        if [[ $? == 0 ]]; then
+            ./osgsharedvector
+        fi
     elif [[ $(pwd) == *"flites"* ]]; then
 
         no_return=0
@@ -182,6 +195,22 @@ function codebin(){
     code $BINPATH/$1
 }
 
+#ripgrep src directory of current project
+function rgsrc(){
+    search=$1
+    if [[ $(pwd) == *"flites"* ]]; then
+        src=/home/ijw/projects/heat-flites/src
+    elif [[ $(pwd) == *"preheat"* ]]; then
+        src=$PREHEATPATH/src
+    elif [[ $(pwd) == *"heat"* ]]; then
+        src=$HEATPATH/src    
+    fi
+
+    rg $search $src
+}
+
 alias chmodbin='sudo chmod a+x $BINPATH/*'
 alias visit='/usr/local/bin/visit/bin/visit'
 alias rgfzf='rg . | fzf'
+alias codetest='code Testing/Temporary/LastTest.log'
+

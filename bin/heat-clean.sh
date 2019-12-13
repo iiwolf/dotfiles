@@ -8,3 +8,4 @@ rm *.dbf
 rm *.dat
 rm *_gmv_*
 rm test*.txt
+rm fort.*
