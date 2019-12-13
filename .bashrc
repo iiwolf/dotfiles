@@ -1,4 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
+# ~/.bashrc: executed by bash(1) for non-login shells
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -116,14 +116,65 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# USER CUSTOM #
-alias em="emacs -nw"
-alias flites="flitesApp flites.def"
+# build and run osg project
+function bnr(){
 
-# CUDA #
-export CUDA_INSTALL_PATH=/usr/local/cuda-10.1
-export PATH=$CUDA_INSTALL_PATH/bin:$PATH
-export LD_LIBRARY_PATH=$CUDA_INSTALL_PATH/lib64:$LD_LIBRARY_PATH
+    cd /projects/osgsharedvector/build
+    make
+    if [[ $? == 0 ]]; then
+        ./osgsharedvector
+    fi
+}
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+export HOME="$HOME"
+export PROJECTS=$HOME/projects
+export DOTFILES=$HOME/dotfiles
+export BINPATH=$DOTFILES/bin
+export PATH=$PATH:$BINPATH # custom bin
+
+## Aliases, Misc. Defaults ##
+alias slack='slack-term --config /home/ijw/snap/slack-term/current/slack-term.json'
+
+# emacs aliases
+alias em='emacs -nw'
+alias emz='emacs -nw ~/.zshrc'
+alias emb='emacs -nw ~/.bashrc'
+alias cz='code ~/.zshrc'
+alias sz='source ~/.zshrc'
+
+# git aliases
+alias gdm='git diff master'
+alias gcm='git checkout master'
+
+## Evironment Variables ##
+export EDITOR='code'
+
+## HEAT ##
+export HEATPATH="$PROJECTS/heat"
+export PATH="$PATH:$HEATPATH/build"
+export PATH="$PATH:$PROJECTS/heat/tools/bash"
+export PYTHONPATH="$PROJECTS/heat/tools/python:$PYTHONPATH"
+
+## PREHEAT ##
+export PREHEATPATH="$PROJECTS/preheat"
+export PATH="$PATH:$PREHEATPATH/build"
+
+## KOKKOS ##
+export OMP_NUM_THREADS=8
+export OMP_PROC_BIND=spread
+export OMP_PLACES=threads
+
+## OSG ##
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:$PROJECTS/OpenSceneGraph/lib"
+export PATH="${PATH}:$PROJECTS/OpenSceneGraph/bin"
+export OPENTHREADS_INC_DIR="/usr/local/include"
+
+## CUDA ##
+export CUDA_INSTALL_PATH="/usr/local/cuda-10.1"
+export PATH="$CUDA_INSTALL_PATH/bin:$PATH"
+export LD_LIBRARY_PATH="$CUDA_INSTALL_PATH/lib64:$LD_LIBRARY_PATH"
 
 ## FLITES ##
 export FLT2_DIR="$PROJECTS/flites-2.1.4"
@@ -133,4 +184,14 @@ export LD_LIBRARY_PATH="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/lib:$LD_
 export PATH="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/bin:$PATH"
 export MANPATH="$PROJECTS/flites-2.1.4:$MANPATH"
 
+## Extensions ## 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. /usr/share/autojump/autojump.sh
+
+export FLT2_ARCH="linux-x64"
+
+export FLT2_CXX11_ABI="0"
+
+export PLPLOT_LIB="/home/ijw/projects/flites-2.2.0/binaries/linux-x64/ext/share/plplot5.13.0"
+
+export __GL_SYNC_TO_VBLANK="0"
