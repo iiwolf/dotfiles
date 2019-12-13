@@ -176,14 +176,6 @@ export CUDA_INSTALL_PATH="/usr/local/cuda-10.1"
 export PATH="$CUDA_INSTALL_PATH/bin:$PATH"
 export LD_LIBRARY_PATH="$CUDA_INSTALL_PATH/lib64:$LD_LIBRARY_PATH"
 
-## FLITES ##
-export FLT2_DIR="$PROJECTS/flites-2.1.4"
-export FLT2_BIN_DIR="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/bin"
-export FLT2_LIBRARY_DIR="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/lib"
-export LD_LIBRARY_PATH="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/lib:$LD_LIBRARY_PATH"
-export PATH="$PROJECTS/flites-2.1.4/binaries/linux_x64_rhel7/bin:$PATH"
-export MANPATH="$PROJECTS/flites-2.1.4:$MANPATH"
-
 ## Extensions ## 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . /usr/share/autojump/autojump.sh
