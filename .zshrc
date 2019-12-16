@@ -144,19 +144,21 @@ function bnr(){
         fi
         
         # cd in heat-flights an make
-        cd ${PROJECTS}/heat-flites
+        cd ${PROJECTS}/heat-flites/build
+        cmake ..
         make
+        res=$?
+        cd ${PROJECTS}/heat-flites
 
         # if build successful, run
-        if [[ $? == 0 ]]; then
-            ./heat-flites
+        if [[ $res == 0 ]]; then
+            ./build/heat-flites $1
         fi
 
         # return to prev directory if necessary
         if [[ $no_return == 0 ]]; then
             cd -
         fi
-        echo "done"
 
     elif [[ $(pwd) == *"heat"* ]]; then
 
