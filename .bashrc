@@ -176,6 +176,15 @@ export CUDA_INSTALL_PATH="/usr/local/cuda-10.1"
 export PATH="$CUDA_INSTALL_PATH/bin:$PATH"
 export LD_LIBRARY_PATH="$CUDA_INSTALL_PATH/lib64:$LD_LIBRARY_PATH"
 
+## FLITES ##
+export FLT2_DIR="/home/ijw/projects/flites-2.2.0"
+export FLT2_ARCH="linux-x64"
+export FLT2_LIBRARY_DIR="/home/ijw/projects/flites-2.2.0/binaries/linux-x64/lib"
+export FLT2_CXX11_ABI="0"
+export PLPLOT_LIB="/home/ijw/projects/flites-2.2.0/binaries/linux-x64/ext/share/plplot5.13.0"
+export __GL_SYNC_TO_VBLANK="0"
+
 ## Extensions ## 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . /usr/share/autojump/autojump.sh
+
