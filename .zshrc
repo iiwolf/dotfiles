@@ -76,6 +76,8 @@ export FLT2_BIN_DIR="/home/ijw/projects/flites-$FLITES_VERSION/binaries/$FLT2_AR
 export FLT2_CXX11_ABI="0"
 export PLPLOT_LIB="/home/ijw/projects/flites-$FLITES_VERSION/binaries/linux-x64/ext/share/plplot5.13.0"
 export __GL_SYNC_TO_VBLANK="0"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:$FLT2_LIBRARY_DIR"
+export PATH="${PATH}:$FLT2_BIN_DIR"
 
 ## Extensions ## 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -218,4 +220,5 @@ alias chmodbin='sudo chmod a+x $BINPATH/*'
 alias visit='/usr/local/bin/visit/bin/visit'
 alias rgfzf='rg . | fzf'
 alias codetest='code Testing/Temporary/LastTest.log'
-
+alias fly='/home/ijw/projects/heat-flites/build/heat-flites'
+alias fa='flitesApp flites.def'
