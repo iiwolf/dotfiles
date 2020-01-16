@@ -216,9 +216,15 @@ function rgsrc(){
     rg $search $src
 }
 
+# Run heat-flites and move output to ouput dir
+function fly(){
+    testcase=$1
+    $PROJECTS"/heat-flites/build/heat-flites" $testcase
+    mv *.tiff output/
+}
+
 alias chmodbin='sudo chmod a+x $BINPATH/*'
 alias visit='/usr/local/bin/visit/bin/visit'
 alias rgfzf='rg . | fzf'
 alias codetest='code Testing/Temporary/LastTest.log'
-alias fly='/home/ijw/projects/heat-flites/build/heat-flites'
 alias fa='flitesApp flites.def'
