@@ -219,8 +219,10 @@ function rgsrc(){
 # Run heat-flites and move output to ouput dir
 function fly(){
     testcase=$1
+    trap "mv *.tiff output" INT
     $PROJECTS"/heat-flites/build/heat-flites" $testcase
     mv *.tiff output/
+    trap - INT
 }
 
 alias chmodbin='sudo chmod a+x $BINPATH/*'
