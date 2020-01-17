@@ -4,7 +4,7 @@
 # Default source and conversion directory @todo make input
 HEAT_FLITES=$PROJECTS/heat-flites
 source_dir=$HEAT_FLITES/output
-buffer_dir=$HEAT_FLTIES/results/buffer
+buffer_dir=$HEAT_FLITES/results/buffer
 
 # Clear buffer directory before use
 rm $buffer_dir/*
