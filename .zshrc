@@ -15,14 +15,15 @@ export PATH=$PROGRAMS/gmsh-4.3.0-Linux64/bin:$PATH
 # load oxide if it's available, if not default to sunaku
 [ -f $ZSH/themes/oxide.zsh-theme ] && ZSH_THEME="oxide" || ZSH_THEME="sunaku"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+## Keybind overwrites ##
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '\e[3;5~' kill-word
+bindkey '^H' backward-kill-word
 
 ## Aliases, Misc. Defaults ##
 
