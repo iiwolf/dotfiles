@@ -1,0 +1,35 @@
+{
+
+    /* general global settings */
+    "editor.minimap.enabled": false,
+    
+    /* extension specific settings */
+    "glassit.alpha": 240,
+    "window.titleBarStyle": "custom",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Horizon Italic",
+    "workbench.activityBar.visible": false,
+
+    // shell launcher shells
+    "shellLauncher.shells.windows": [
+        {
+          "shell": "%windir%\\System32\\cmd.exe",
+          "args" : ["/K", "C:\\Users\\iiWol\\Anaconda3\\Scripts\\activate.bat", "C:\\Users\\iiWol\\Anaconda3"],
+          "label": "anaconda"
+        },
+        {
+            "shell": "%windir%\\System32\\wsl.exe",
+            "label": "WSL"
+        },
+        {
+            "shell": "%SystemRoot%\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "label": "PoWeRsHeLl"
+        }
+      ],
+
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\wsl.exe",
+    "window.openFoldersInNewWindow": "on",
+    "window.openWithoutArgumentsInNewWindow": "off",
+    "latex-workshop.view.pdf.viewer": "browser"
+
+}
