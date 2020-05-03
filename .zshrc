@@ -232,15 +232,9 @@ alias chmodbin='sudo chmod a+x $BINPATH/*'
 alias visit='/usr/local/bin/visit/bin/visit'
 alias rgfzf='rg . | fzf'
 alias codetest='code Testing/Temporary/LastTest.log'
-<<<<<<< HEAD
-alias fa='flitesApp flites.def'
-alias fly='fly.sh'
-=======
-alias fly='/home/ijw/projects/heat-flites/build/heat-flites'
-alias fa='flitesApp flites.def'
 
 # Import colorscheme from 'wal'
-(cat /home/isaac/.cache/wal/sequences)
+(cat /home/$(whoami)/.cache/wal/sequences)
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -257,4 +251,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
->>>>>>> db7402c7c83f533f981930c9366bf94e13ed932c
