@@ -20,7 +20,7 @@ export PATH=~/projects/hyfin/scripts/cws_scripts:$PATH
 
 
 # load oxide if it's available, if not default to sunaku
-[ -f $ZSH/themes/oxide.zsh-theme ] && ZSH_THEME="oxide" || ZSH_THEME="sunaku"
+ZSH_THEME="theunraveler"
 
 plugins=(git)
 
@@ -251,3 +251,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Import the colors.
+. "${HOME}/.cache/wal/colors.sh"
+
+# Create the alias.
+alias dmen='dmenu_run -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"'
