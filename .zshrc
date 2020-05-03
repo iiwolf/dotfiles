@@ -11,6 +11,13 @@ export PATH=$PATH:$BINPATH:$PROGRAMS
 # Misc program paths
 export PATH=$PROGRAMS/ParaView-5.7.0-RC1-MPI-Linux-64bit/bin:$PATH
 export PATH=$PROGRAMS/gmsh-4.3.0-Linux64/bin:$PATH
+export PATH=/usr/local/MATLAB/R2017a/bin/:$PATH
+
+# Project specific
+export PATH=~/projects/hyfin/codes/missile-datcom-itar/bin/Linux:$PATH
+export PATH=~/projects/hyfin/scripts:$PATH
+export PATH=~/projects/hyfin/scripts/cws_scripts:$PATH
+
 
 # load oxide if it's available, if not default to sunaku
 [ -f $ZSH/themes/oxide.zsh-theme ] && ZSH_THEME="oxide" || ZSH_THEME="sunaku"
@@ -79,6 +86,10 @@ export PLPLOT_LIB="/home/ijw/projects/flites-$FLITES_VERSION/binaries/linux-x64/
 export __GL_SYNC_TO_VBLANK="0"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:$FLT2_LIBRARY_DIR"
 export PATH="${PATH}:$FLT2_BIN_DIR"
+
+## VTK ##
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/            
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ijw/projects/matlab_c++_interop            
 
 ## Extensions ## 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

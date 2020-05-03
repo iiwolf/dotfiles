@@ -3,14 +3,17 @@
 
 # Make sure directories are empty
 rm $PROJECTS/heat-flites/output/*
-
-# run heat-flites
-fly.sh $1
+    
+# run heat-flites if supplied testcase
+if [ ! -z "$1" ]; then
+    echo "flites"
+    fly.sh $1
+fi
 
 # Convert all images to jpg
 tiff_to_jpg.sh
 
 # Convert directory of jpgs to gif
-cd results/buffer
-images_to_gif.sh 2 jpg observer_view.gif
-cd -
+# cd results/buffer
+# images_to_gif.sh 2 jpg observer_view.gif
+# cd -
