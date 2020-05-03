@@ -6,11 +6,13 @@ export PROJECTS=$HOME/projects
 export DOTFILES=$HOME/dotfiles
 export BINPATH=$DOTFILES/bin
 export PROGRAMS=$HOME/programs
-export PATH=$PATH:$BINPATH:$PROGRAMS
+#export PATH=$PATH:$BINPATH:$PROGRAMS/bin
 
 # Misc program paths
 export PATH=$PROGRAMS/ParaView-5.7.0-RC1-MPI-Linux-64bit/bin:$PATH
-export PATH=$PROGRAMS/gmsh-4.3.0-Linux64/bin:$PATH
+export PATH=$PROGRAMS/gmsh-4.5.4-Linux64/bin:$PATH
+export PATH=~/.local/bin:$PATH
+export PATH=~/anaconda3/bin:$PATH
 
 # load oxide if it's available, if not default to sunaku
 [ -f $ZSH/themes/oxide.zsh-theme ] && ZSH_THEME="oxide" || ZSH_THEME="sunaku"
@@ -222,3 +224,22 @@ alias rgfzf='rg . | fzf'
 alias codetest='code Testing/Temporary/LastTest.log'
 alias fly='/home/ijw/projects/heat-flites/build/heat-flites'
 alias fa='flitesApp flites.def'
+
+# Import colorscheme from 'wal'
+(cat /home/isaac/.cache/wal/sequences)
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/isaac/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/isaac/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/isaac/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/isaac/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

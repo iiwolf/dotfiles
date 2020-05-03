@@ -31,7 +31,7 @@
     {
         "key": "alt+w",
         "command": "editor.action.clipboardCopyAction",
-        "when": "textInputFocus"
+        "when": "always"
     },
     {
         "key": "ctrl+c",
@@ -194,5 +194,19 @@
         "key": "alt+up",
         "command": "-editor.action.moveLinesUpAction",
         "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+x ctrl+s",
+        "command": "python.datascience.notebookeditor.save"
+    },
+    {
+        "key": "alt+w",
+        "command": "editor.action.clipboardCopyAction",
+        "when": "editorFocus"
+    },
+    {
+        "key": "alt+w",
+        "command": "editor.action.clipboardCopyAction",
+        "when": "editorTextFocus"
     }
 ]
