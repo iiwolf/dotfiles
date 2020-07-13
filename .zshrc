@@ -1,7 +1,7 @@
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-export HOME="$HOME"
+export ZSH=$HOME/.oh-my-zsh
+export HOME=$HOME
 export PROJECTS=$HOME/projects
 export DOTFILES=$HOME/dotfiles
 export BINPATH=$DOTFILES/bin
@@ -14,10 +14,12 @@ export PATH=$PROGRAMS/gmsh-4.3.0-Linux64/bin:$PATH
 export PATH=/usr/local/MATLAB/R2017a/bin/:$PATH
 
 # Project specific
-export PATH=~/projects/hyfin/codes/missile-datcom-itar/bin/Linux:$PATH
-export PATH=~/projects/hyfin/scripts:$PATH
-export PATH=~/projects/hyfin/scripts/cws_scripts:$PATH
+export PATH=$PROJECTS/hyfin/codes/missile-datcom-itar/bin/Linux:$PATH
+export PATH=$PROJECTS/meadow/scripts:$PATH
+export PATH=$PROJECTS/cws/cws/bin:$PATH
 
+# Python startup
+export PYTHONSTARTUP=~/.startup.py
 
 # load oxide if it's available, if not default to sunaku
 ZSH_THEME="theunraveler"
@@ -45,6 +47,9 @@ alias sz='source ~/.zshrc'
 alias gdm='git diff master'
 alias gcm='git checkout master'
 alias gdno='git diff --name-only'
+
+# misc alias
+alias python='python3'
 
 ## Evironment Variables ##
 export EDITOR='code'
@@ -238,14 +243,14 @@ alias codetest='code Testing/Temporary/LastTest.log'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/isaac/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/ijw/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/isaac/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/isaac/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/ijw/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ijw/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/isaac/anaconda3/bin:$PATH"
+        export PATH="/home/ijw/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
