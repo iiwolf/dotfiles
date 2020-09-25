@@ -20,6 +20,9 @@ export PATH=$PROJECTS/cws/cws/bin:$PATH
 
 # Python startup
 export PYTHONSTARTUP=~/.startup.py
+# export PYTHONPATH=$PYTHONPATH:/home/ijw/projects/meadow/meadow-python/rosetta
+# export PYTHONPATH=$PYTHONPATH:/home/ijw/programs/ParaView-5.7.0-RC1-MPI-Linux-64bit/lib
+# export PYTHONPATH=$PYTHONPATH:/home/ijw/programs/ParaView-5.7.0-RC1-MPI-Linux-64bit/lib/python2.7/site-packages
 
 # load oxide if it's available, if not default to sunaku
 ZSH_THEME="theunraveler"
@@ -238,8 +241,7 @@ alias visit='/usr/local/bin/visit/bin/visit'
 alias rgfzf='rg . | fzf'
 alias codetest='code Testing/Temporary/LastTest.log'
 
-# Import colorscheme from 'wal'
-(cat /home/$(whoami)/.cache/wal/sequences)
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -256,8 +258,20 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# Import the colors.
-. "${HOME}/.cache/wal/colors.sh"
 
 # Create the alias.
 alias dmen='dmenu_run -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"'
+
+# conda activate py385
+# export PATH=$PATH:/home/ijw/miniconda3/envs/py385/bin
+# export PATH=/home/ijw/miniconda3/envs/py385/bin:$PATH
+export CONDA_AUTO_ACTIVATE_BASE=false
+
+# Import colorscheme from 'wal'
+
+(cat /home/$(whoami)/.cache/wal/sequences)
+
+# Import the colors.
+. "${HOME}/.cache/wal/colors.sh"
+
+# (wal --vte --theme .config/wpg/schemes/_home_ijw__config_wpg_wallpapers_dream_home_jpg_dark_wal__1.1.0.json)

@@ -116,8 +116,8 @@ shadow-ignore-shaped = false;
 #################################
 
 menu-opacity = 1;
-inactive-opacity = 0.9;
-active-opacity = 0.9;
+inactive-opacity = 1.0;
+active-opacity = 1.0;
 frame-opacity = 1;
 inactive-opacity-override = false;
 alpha-step = 0.06;

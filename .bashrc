@@ -190,4 +190,3 @@ export __GL_SYNC_TO_VBLANK="0"
 ## Extensions ## 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . /usr/share/autojump/autojump.sh
-

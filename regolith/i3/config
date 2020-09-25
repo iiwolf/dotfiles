@@ -47,6 +47,10 @@ set_from_resource $rofiTheme rofi.theme "regolith-theme"
 # change gaps interactively
 bindsym $mod+minus gaps inner current minus 6
 bindsym $mod+plus gaps inner current plus 6
+bindsym $mod+Shift+j gaps left current minus 6 
+bindsym $mod+Shift+l gaps right current plus 6 
+bindsym $mod+Shift+k gaps left current plus 6 
+bindsym $mod+Shift+semicolon gaps right current minus 6 
 
 # cycle across workspaces
 bindsym $mod+Tab workspace next
@@ -169,12 +173,6 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -324,4 +322,4 @@ bar {
   }
 }
 
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/grey_city.jpg
+exec --no-startup-id feh --bg-fill ~/Documents/Wallpapers/dream_home.jpg
