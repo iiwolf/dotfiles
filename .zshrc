@@ -14,13 +14,15 @@ export PATH=$PROGRAMS/gmsh-4.3.0-Linux64/bin:$PATH
 export PATH=/usr/local/MATLAB/R2017a/bin/:$PATH
 
 # Project specific
-export PATH=$PROJECTS/hyfin/codes/missile-datcom-itar/bin/Linux:$PATH
-export PATH=$PROJECTS/meadow/scripts:$PATH
+export PATH=$PROJECTS/missile-datcom-itar/bin/Linux:$PATH
+export PATH=$PROJECTS/rosetta/drivers:$PATH
 export PATH=$PROJECTS/cws/cws/bin:$PATH
 
 # Python startup
 export PYTHONSTARTUP=~/.startup.py
-# export PYTHONPATH=$PYTHONPATH:/home/ijw/projects/meadow/meadow-python/rosetta
+export PYTHONPATH=$PYTHONPATH:/home/ijw/projects/meadow-python
+export PYTHONPATH=$PYTHONPATH:/home/ijw/projects/rosetta
+export PYTHONPATH=$PYTHONPATH:/home/ijw/projects/pymoo
 # export PYTHONPATH=$PYTHONPATH:/home/ijw/programs/ParaView-5.7.0-RC1-MPI-Linux-64bit/lib
 # export PYTHONPATH=$PYTHONPATH:/home/ijw/programs/ParaView-5.7.0-RC1-MPI-Linux-64bit/lib/python2.7/site-packages
 
@@ -266,12 +268,13 @@ alias dmen='dmenu_run -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"'
 # export PATH=$PATH:/home/ijw/miniconda3/envs/py385/bin
 # export PATH=/home/ijw/miniconda3/envs/py385/bin:$PATH
 export CONDA_AUTO_ACTIVATE_BASE=false
+conda activate base
 
 # Import colorscheme from 'wal'
-
-(cat /home/$(whoami)/.cache/wal/sequences)
 
 # Import the colors.
 . "${HOME}/.cache/wal/colors.sh"
 
-# (wal --vte --theme .config/wpg/schemes/_home_ijw__config_wpg_wallpapers_dream_home_jpg_dark_wal__1.1.0.json)
+# wal --theme .config/wpg/schemes/_home_ijw__config_wpg_wallpapers_sea_side_jpg_dark_wal__1.1.0.json
+# wal -i ~/Documents/Wallpapers/sea_side.jpg
+(cat $HOME/.config/wpg/sequences &)

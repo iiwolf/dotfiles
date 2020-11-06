@@ -322,4 +322,4 @@ bar {
   }
 }
 
-exec --no-startup-id feh --bg-fill ~/Documents/Wallpapers/dream_home.jpg
+exec --no-startup-id feh --bg-fill ~/Documents/Wallpapers/sea_side.jpg
