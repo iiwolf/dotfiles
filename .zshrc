@@ -79,6 +79,8 @@ export __GL_SYNC_TO_VBLANK="0"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:$FLT2_LIBRARY_DIR"
 export PATH="${PATH}:$FLT2_BIN_DIR"
 
+## MEADOW
+export PATH=/home/ijw/projects/datcom/bin/Linux:$PATH
 ## Extensions ## 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 . /usr/share/autojump/autojump.sh
@@ -220,5 +222,21 @@ alias chmodbin='sudo chmod a+x $BINPATH/*'
 alias visit='/usr/local/bin/visit/bin/visit'
 alias rgfzf='rg . | fzf'
 alias codetest='code Testing/Temporary/LastTest.log'
-alias fly='/home/ijw/projects/heat-flites/build/heat-flites'
+alias fly='heat-flites-clean.sh & /home/ijw/projects/heat-flites/build/heat-flites'
 alias fa='flitesApp flites.def'
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ijw/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ijw/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ijw/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ijw/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
