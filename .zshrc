@@ -1,28 +1,43 @@
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-export HOME="$HOME"
+export ZSH=$HOME/.oh-my-zsh
+export HOME=$HOME
 export PROJECTS=$HOME/projects
 export DOTFILES=$HOME/dotfiles
 export BINPATH=$DOTFILES/bin
 export PROGRAMS=$HOME/programs
-export PATH=$PATH:$BINPATH:$PROGRAMS
+#export PATH=$PATH:$BINPATH:$PROGRAMS/bin
 
 # Misc program paths
 export PATH=$PROGRAMS/ParaView-5.7.0-RC1-MPI-Linux-64bit/bin:$PATH
 export PATH=$PROGRAMS/gmsh-4.3.0-Linux64/bin:$PATH
+export PATH=/usr/local/MATLAB/R2017a/bin/:$PATH
+
+# Project specific
+export PATH=$PROJECTS/missile-datcom-itar/bin/Linux:$PATH
+export PATH=$PROJECTS/rosetta/drivers:$PATH
+export PATH=$PROJECTS/cws/cws/bin:$PATH
+
+# Python startup
+export PYTHONSTARTUP=~/.startup.py
+export PYTHONPATH=$PYTHONPATH:/home/ijw/projects/meadow-python
+export PYTHONPATH=$PYTHONPATH:/home/ijw/projects/rosetta
+export PYTHONPATH=$PYTHONPATH:/home/ijw/projects/pymoo
+# export PYTHONPATH=$PYTHONPATH:/home/ijw/programs/ParaView-5.7.0-RC1-MPI-Linux-64bit/lib
+# export PYTHONPATH=$PYTHONPATH:/home/ijw/programs/ParaView-5.7.0-RC1-MPI-Linux-64bit/lib/python2.7/site-packages
 
 # load oxide if it's available, if not default to sunaku
-[ -f $ZSH/themes/oxide.zsh-theme ] && ZSH_THEME="oxide" || ZSH_THEME="sunaku"
+ZSH_THEME="theunraveler"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+## Keybind overwrites ##
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '\e[3;5~' kill-word
+bindkey '^H' backward-kill-word
 
 ## Aliases, Misc. Defaults ##
 
@@ -37,6 +52,9 @@ alias sz='source ~/.zshrc'
 alias gdm='git diff master'
 alias gcm='git checkout master'
 alias gdno='git diff --name-only'
+
+# misc alias
+alias python='python3'
 
 ## Evironment Variables ##
 export EDITOR='code'
@@ -81,6 +99,10 @@ export PATH="${PATH}:$FLT2_BIN_DIR"
 
 ## MEADOW
 export PATH=/home/ijw/projects/datcom/bin/Linux:$PATH
+## VTK ##
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/            
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ijw/projects/matlab_c++_interop            
+
 ## Extensions ## 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 . /usr/share/autojump/autojump.sh
@@ -222,12 +244,10 @@ alias chmodbin='sudo chmod a+x $BINPATH/*'
 alias visit='/usr/local/bin/visit/bin/visit'
 alias rgfzf='rg . | fzf'
 alias codetest='code Testing/Temporary/LastTest.log'
-alias fly='heat-flites-clean.sh & /home/ijw/projects/heat-flites/build/heat-flites'
-alias fa='flitesApp flites.def'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/ijw/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/ijw/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
@@ -240,3 +260,20 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Create the alias.
+alias dmen='dmenu_run -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"'
+
+# conda activate py385
+# export PATH=$PATH:/home/ijw/miniconda3/envs/py385/bin
+# export PATH=/home/ijw/miniconda3/envs/py385/bin:$PATH
+export CONDA_AUTO_ACTIVATE_BASE=false
+conda activate base
+
+# Import colorscheme from 'wal'
+
+# Import the colors.
+. "${HOME}/.cache/wal/colors.sh"
+
+# wal --theme .config/wpg/schemes/_home_ijw__config_wpg_wallpapers_sea_side_jpg_dark_wal__1.1.0.json
+# wal -i ~/Documents/Wallpapers/sea_side.jpg
+(cat $HOME/.config/wpg/sequences &)
